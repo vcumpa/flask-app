@@ -1,0 +1,16 @@
+services:
+  flask-app:
+    image: vcumpa/flask-app:latest
+    ports:
+      - "5000:5000"
+    container_name: flask-app
+    restart: always
+
+  watchtower:
+    image: nickfedor/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=60
+    restart: always
